@@ -1,0 +1,32 @@
+<!DOCTYPE html>
+<html>
+<head>
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.2.1/jquery.min.js"></script>
+</head>
+<body>
+<h1>Test jQuery ajax</h1>
+Please see console output.
+<script type='application/javascript'>
+    $(document).ready(function() {
+        $.ajax({
+            url: 'http://localhost:3002/redirect',
+            success: function (data) {
+                if (!data) {
+                    return;
+                }
+                console.log('url '+url + ' success ' + JSON.stringify(data));
+            },
+            error: function (data, textStatus, errorThrown) {
+                if(data.status == 0) {
+                    console.log('error Why not data.status is 302, like other browsers?');
+                    console.log('error ' + JSON.stringify(data) + ' textStatus ' + JSON.stringify(textStatus) + ' errorThrown ' + +JSON.stringify(errorThrown));
+                } else {
+                    console.log('Ok, data.status is 302');
+                    console.log('error ' + JSON.stringify(data) + ' textStatus ' + JSON.stringify(textStatus) + ' errorThrown ' + +JSON.stringify(errorThrown));
+                }
+            }
+        });
+    });
+</script>
+</body>
+</html>
